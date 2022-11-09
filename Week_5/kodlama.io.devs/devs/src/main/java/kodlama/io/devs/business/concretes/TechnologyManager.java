@@ -47,7 +47,6 @@ public class TechnologyManager implements TechnologyService {
 	@Override
 	public void add(CreateTechnologyRequest createTechnologyRequest) {
 		Technology technology = new Technology();
-		//ProgrammingLanguage language = programmingLanguageRepository.findById(createTechnologyRequest.getId()).get();
 
 		technology.setName(createTechnologyRequest.getName());
 		this.technologyRepository.save(technology);
@@ -55,7 +54,6 @@ public class TechnologyManager implements TechnologyService {
 
 	@Override
 	public void update(UpdateTechnologyRequest updateTechnologyRequest) {
-		//ProgrammingLanguage language = programmingLanguageRepository.findById(updateTechnologyRequest.getProgrammingLanguageId()).get();
 		Technology technology = technologyRepository.findById(updateTechnologyRequest.getTechnologyId()).get();
 
 		technology.setName(updateTechnologyRequest.getTechnologyName());
