@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import kodlama.io.devs.business.abstracts.TechnologyService;
 import kodlama.io.devs.business.requests.CreateTechnologyRequest;
 import kodlama.io.devs.business.requests.DeleteTechnologyRequest;
+import kodlama.io.devs.business.requests.GetAllTechnologiesRequest;
 import kodlama.io.devs.business.requests.UpdateTechnologyRequest;
 import kodlama.io.devs.business.responses.GetAllTechnologiesResponse;
 
@@ -27,8 +28,8 @@ public class TechnologiesController {
 	}
 	
 	@GetMapping("/getallTechnologiesByProgrammingLanguageId")
-	public List<GetAllTechnologiesResponse> getAll() {
-		return technologyService.getAll();
+	public List<GetAllTechnologiesResponse> getAllByProgrammingLanguageId(GetAllTechnologiesRequest getAllTechnologiesRequest) {
+		return technologyService.getAllByProgrammingLanguageId(getAllTechnologiesRequest);
 	}
 
 	@PostMapping("/addTechnologiesByProgrammingLanguageId")

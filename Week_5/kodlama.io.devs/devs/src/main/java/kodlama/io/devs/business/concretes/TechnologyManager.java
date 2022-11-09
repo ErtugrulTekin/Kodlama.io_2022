@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import kodlama.io.devs.business.abstracts.TechnologyService;
 import kodlama.io.devs.business.requests.CreateTechnologyRequest;
 import kodlama.io.devs.business.requests.DeleteTechnologyRequest;
+import kodlama.io.devs.business.requests.GetAllTechnologiesRequest;
 import kodlama.io.devs.business.requests.UpdateTechnologyRequest;
 import kodlama.io.devs.business.responses.GetAllTechnologiesResponse;
 import kodlama.io.devs.dataAccess.abstracts.ProgrammingLanguageRepository;
@@ -29,16 +30,20 @@ public class TechnologyManager implements TechnologyService {
 	}
 
 	@Override
-	public List<GetAllTechnologiesResponse> getAll() {
+	public List<GetAllTechnologiesResponse> getAllByProgrammingLanguageId(
+			GetAllTechnologiesRequest getAllTechnologiesRequest) {
 		List<Technology> technologies = technologyRepository.findAll();
 		List<GetAllTechnologiesResponse> technologiesResponses = new ArrayList<GetAllTechnologiesResponse>();
 
 		for (Technology technology : technologies) {
 			GetAllTechnologiesResponse responseItem = new GetAllTechnologiesResponse();
-			responseItem.setId(technology.getId());
-			responseItem.setName(technology.getName());
-			
-			technologiesResponses.add(responseItem);
+
+			if (getAllTechnologiesRequest.getId() == technology.getProgrammingLanguage().getId()) {
+				responseItem.setId(technology.getId());
+				responseItem.setName(technology.getName());
+
+				technologiesResponses.add(responseItem);
+			}
 		}
 
 		return technologiesResponses;
